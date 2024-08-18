@@ -1,0 +1,66 @@
+def calculate_gpa(average_grade):
+    """Converts average grade to GPA."""
+    if average_grade >= 90:
+        return 4.0
+    elif average_grade >= 80:
+        return 3.0
+    elif average_grade >= 70:
+        return 2.0
+    elif average_grade >= 60:
+        return 1.0
+    else:
+        return 0.0
+
+def get_letter_grade(average_grade):
+    """Converts average grade to letter grade."""
+    if average_grade >= 90:
+        return 'A'
+    elif average_grade >= 80:
+        return 'B'
+    elif average_grade >= 70:
+        return 'C'
+    elif average_grade >= 60:
+        return 'D'
+    else:
+        return 'F'
+
+def main():
+    print("Student Grade Tracker")
+    print("=====================")
+
+    grades = []
+    while True:
+        try:
+            # Prompt the user to enter a grade
+            grade = float(input("Enter the grade for a subject or assignment (0-100): "))
+            if grade < 0 or grade > 100:
+                print("Invalid grade. Please enter a value between 0 and 100.")
+                continue
+            grades.append(grade)
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.")
+            continue
+
+        # Ask if the user wants to enter another grade
+        another = input("Do you want to enter another grade? (yes/no): ").strip().lower()
+        if another != 'yes':
+            break
+
+    # Calculate average grade
+    if grades:
+        average_grade = sum(grades) / len(grades)
+        gpa = calculate_gpa(average_grade)
+        letter_grade = get_letter_grade(average_grade)
+
+        # Display the results
+        print("\nGrade Report:")
+        print(f"Total number of grades entered: {len(grades)}")
+        print(f"Average grade: {average_grade:.2f}")
+        print(f"Letter grade: {letter_grade}")
+        print(f"GPA: {gpa:.2f}")
+    else:
+        print("No grades entered.")
+
+# Run the main function
+if _name_ == "_main_":
+    main()
